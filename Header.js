@@ -1,45 +1,51 @@
 
 function getCart() {
-    try {
+    // try {
       return JSON.parse(localStorage.getItem("cart")) || [];
-    } catch (e) {
-      return []; // fallback if corrupted
-    }
+    // } catch (e) {
+    //   return []; // fallback if corrupted
+    // }
   }
 
 function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify)
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 
+function updateCartCount() {
+    const cart = getCart();
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0); 
+    const cartCountElem = document.querySelector(".cart-count");
+    if (cartCountElem) {
+      cartCountElem.textContent = cartCount;
+    }
+  }
 
 function renderHeader() {
-    const cart = getCart();
-    const cartCount = cart.reduce((sum, item) => sum + item.quanity, 0);
-
-
 
     const headerHTML = `
     <header class="d-flex justify-content-between align-items-center px-3">
-      <div class="d-flex align-items-center">
-        <img src="image/AmazonLogo.png" alt="Amazon" class="logo me-3">
-        <input type="text" class="form-control me-2" placeholder="Search">
-        <button class="btn btn-warning">Search</button>
-      </div>
-      <div class="cart-icon">
-        <img src="image/amazon_cart.png" alt="Cart" width="100">
-        <span class="cart-count">${cartCount}</span>
-      </div>
-    </header>
-  `;
+    <div class="d-flex align-items-center">
+      <img src="image/AmazonLogo.png" alt="Amazon" class="logo me-3">
+      <input type="text" class="form-control me-2" placeholder="Search">
+      <button class="btn btn-warning">Search</button>
+    </div>
+    <div class="cart-icon position-relative">
+      <img src="image/amazon_cart.png" alt="Cart" width="100">
+      <span class="cart-count">0</span>
+    </div>
+  </header>
+   `;
   document.body.insertAdjacentHTML("afterbegin", headerHTML);
+
+  updateCartCount();
 }
 
 
 const products = [
     {id: 1, name: "Black and Gray Socks 6 pair", price: 10.90, image: "image/socks.png"},
     {id: 2, name: "Medium size Basketball", price: 20.95, image: "image/basketball.png"},
-    {id: 3, name: "T-shirt", price: 7.99, image: "image/T_shirt.png"},
+    {id: 3, name: "Plain Blue T-shirt", price: 7.99, image: "image/T_shirt.png"},
     {id: 4, name: "Toaster", price: 19.99, image: "image/toaster.png"}
 ]
 
@@ -82,7 +88,9 @@ function setupCartButtons() {
       }
 
       saveCart(cart);
-      location.reload(); // refresh to update cart count
+    //   location.reload(); // refresh to update cart count
+       updateCartCount()
+     
     });
   });
 }
