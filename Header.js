@@ -30,11 +30,21 @@ function renderHeader() {
       <input type="text" class="form-control me-2" placeholder="Search">
       <button class="btn btn-warning">Search</button>
     </div>
-    <div class="cart-icon position-relative">
-      <img src="image/amazon_cart.png" alt="Cart" width="100">
-      <span class="cart-count">0</span>
+
+    <div class="d-flex align-items-center">
+    <!-- Returns & Orders -->
+    <div class="me-4 text-white text-center">
+      <div style="font-size: 12px;">Returns</div>
+      <div style="font-weight: bold;">& Orders</div>
     </div>
-  </header>
+
+    <a href="checkout.html" class="cart-icon text-white text-decoration-none position-relative">
+          <img src="image/amazon_cart.png" alt="Cart" width="80">
+          <span class="cart-count">0</span>
+          <span style="font-weight:bold; margin-left:-28px;">Cart</span>
+        </a>
+      </div>
+    </header>
    `;
   document.body.insertAdjacentHTML("afterbegin", headerHTML);
 

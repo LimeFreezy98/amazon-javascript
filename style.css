@@ -17,6 +17,13 @@ header {
  display: inline-block;
 }
 
+.cart-icon {
+    display: flex;
+    align-items: center;   /* vertically align */
+    gap: 6px;              /* space between image and text */
+    position: relative;
+  }
+
 .cart-icon img {
     width: 100px;  /* cart size */
     height: auto;
@@ -33,7 +40,7 @@ header {
 .cart-count {
     position: absolute;
     top: 14px;
-    right: 45px;
+    right: 59px;
     transform: translate(50%, -50%);
 
    /* background: orange; */  /* optional background */
